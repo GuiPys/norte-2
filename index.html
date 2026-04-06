@@ -3,110 +3,116 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Fort - Ferramentas e Materiais</title>
+<title>Portal Fort</title>
 
 <style>
 :root {
-  --preto: #000000;
-  --vermelho: #c62828;
-  --branco: #ffffff;
+    --branco:#ffffff;
+    --preto:#000000;
+    --vermelho:#c62828;
+    --cinza:#f4f4f4;
 }
 
-body { margin:0; font-family:'Segoe UI', sans-serif; background:#f9f9f9; color:var(--preto); }
+body { margin:0; font-family:'Segoe UI', sans-serif; background:var(--cinza);} 
 
-header { background: var(--preto); color:var(--branco); padding:20px; display:flex; justify-content:space-between; align-items:center; }
-header .logo { display:flex; align-items:center; gap:15px; }
-header .logo h2 { margin:0; }
-nav a { color:var(--branco); margin:0 10px; text-decoration:none; font-weight:bold; }
+header { background:var(--preto); color:white; padding:20px; display:flex; align-items:center; justify-content:space-between; }
+.logo { display:flex; align-items:center; gap:15px; }
+.logo img { height:60px; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
 nav a:hover { color:var(--vermelho); }
 
-.hero { background: linear-gradient(135deg,var(--preto),var(--vermelho)); color:var(--branco); text-align:center; padding:60px 20px; }
-.hero h1 { margin-bottom:10px; font-size:36px; }
+.hero { background: linear-gradient(135deg,var(--preto) 60%, var(--vermelho)); color:white; padding:60px 20px; text-align:center; }
+.hero h1 { font-size:36px; margin-bottom:10px; }
 
 .container { max-width:1200px; margin:auto; padding:20px; }
 
-.sobre { background:var(--branco); padding:20px; border-radius:10px; margin-bottom:20px; box-shadow: 0 4px 10px rgba(0,0,0,0.1); }
+.sobre { background:var(--branco); padding:20px; border-radius:10px; margin-bottom:20px; }
 
 .filtros { margin-bottom:20px; text-align:center; }
-.filtros button { margin:5px; padding:8px 12px; border:none; background:var(--preto); color:var(--branco); border-radius:5px; cursor:pointer; }
+.filtros button { margin:5px; padding:8px 12px; border:none; background:var(--preto); color:white; border-radius:5px; cursor:pointer; }
 .filtros button:hover { background:var(--vermelho); }
 
 .products { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
 .card { background:var(--branco); border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition:0.3s; }
 .card:hover { transform:translateY(-5px); }
 .card img { width:100%; height:180px; object-fit:cover; }
-.card h4 { padding:10px; }
-.card button { margin:10px; width:calc(100% - 20px); background:var(--vermelho); color:var(--branco); border:none; padding:10px; border-radius:6px; cursor:pointer; }
+.card h4 { padding:10px; color:var(--preto); }
+.card button { margin:10px; width:calc(100% - 20px); background:var(--vermelho); color:white; border:none; padding:10px; border-radius:6px; cursor:pointer; }
 
-.admin { position:fixed; bottom:20px; right:20px; background:var(--preto); color:var(--branco); padding:10px 15px; border-radius:50px; cursor:pointer; }
+.admin { position:fixed; bottom:20px; right:20px; background:var(--preto); color:white; padding:10px 15px; border-radius:50px; cursor:pointer; }
 
-#loginBox, #adminPanel { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--branco); padding:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2); width:320px; z-index:999; }
-#loginBox input, #adminPanel input, #adminPanel select, #loginBox button, #adminPanel button { width:100%; padding:8px; margin:5px 0; }
+#loginBox, #adminPanel { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--branco); padding:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2); width:300px; }
+
+input, select { width:100%; padding:8px; margin:5px 0; }
+button { width:100%; }
 </style>
 </head>
+
 <body>
 
 <header>
-  <div class="logo">
-    <h2>Portal Fort</h2>
-  </div>
-  <nav>
-    <a href="#">Início</a>
-    <a href="#">Produtos</a>
-    <a href="#">Contato</a>
-  </nav>
+<div class="logo">
+<img src="logo.png" alt="Portal Fort">
+<h2>Portal Fort</h2>
+</div>
+<nav>
+<a href="#">Início</a>
+<a href="#">Produtos</a>
+<a href="#">Contato</a>
+</nav>
 </header>
 
 <section class="hero">
-  <h1>Ferramentas e Materiais Profissionais</h1>
-  <p>Qualidade e confiança em Parauapebas</p>
+<h1>Loja de Ferramentas e Produtos de Construção</h1>
+<p>A maior variedade para sua empresa ou lar!</p>
 </section>
 
 <div class="container">
-  <div class="sobre">
-    <h2>Sobre a Empresa</h2>
-    <p>A <strong>Portal Fort</strong> oferece ferramentas, materiais e produtos diversificados para construção e marcenaria, atendendo profissionais e empresas com qualidade e confiança.</p>
-  </div>
 
-  <div class="filtros">
-    <button onclick="filtrar('all')">Todos</button>
-    <button onclick="filtrar('madeira')">Madeira</button>
-    <button onclick="filtrar('porta')">Porta</button>
-    <button onclick="filtrar('ferramentas')">Ferramentas</button>
-    <button onclick="filtrar('construcao')">Construção</button>
-  </div>
+<div class="sobre">
+<h2>Sobre a Empresa</h2>
+<p><strong>Portal Fort</strong> oferece ferramentas, portas, madeira e materiais de construção com qualidade e confiança para Parauapebas – PA.</p>
+</div>
 
-  <div class="products" id="products"></div>
+<div class="filtros">
+<button onclick="filtrar('all')">Todos</button>
+<button onclick="filtrar('madeira')">Madeira</button>
+<button onclick="filtrar('porta')">Porta</button>
+<button onclick="filtrar('ferramentas')">Ferramentas</button>
+<button onclick="filtrar('construcao')">Construção</button>
+</div>
+
+<div class="products" id="products"></div>
+
 </div>
 
 <div class="admin" onclick="mostrarLogin()">Admin</div>
 
 <div id="loginBox">
-  <h3>Login Admin</h3>
-  <input id="email" type="email" placeholder="Email">
-  <input id="senha" type="password" placeholder="Senha">
-  <button onclick="loginAdmin()">Entrar</button>
+<h3>Login Admin</h3>
+<input id="email" placeholder="Email">
+<input id="senha" type="password" placeholder="Senha">
+<button onclick="login()">Entrar</button>
 </div>
 
 <div id="adminPanel">
-  <h3>Cadastrar Produto</h3>
-  <input id="nome" placeholder="Nome do Produto">
-  <input type="file" id="file">
-  <select id="categoria">
-    <option value="madeira">Madeira</option>
-    <option value="porta">Porta</option>
-    <option value="ferramentas">Ferramentas</option>
-    <option value="construcao">Construção</option>
-  </select>
-  <button onclick="addProduto()">Cadastrar</button>
+<h3>Cadastrar Produto</h3>
+<input id="nome" placeholder="Nome do produto">
+<input type="file" id="file">
+<select id="categoria">
+<option value="madeira">Madeira</option>
+<option value="porta">Porta</option>
+<option value="ferramentas">Ferramentas</option>
+<option value="construcao">Construção</option>
+</select>
+<button onclick="addProduto()">Cadastrar</button>
 </div>
 
-<!-- Firebase SDK -->
 <script type="module">
 import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-import { getFirestore, collection, onSnapshot, addDoc } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 
 const firebaseConfig = {
   apiKey: "AIzaSyAu5gIF2BBR6boxJ6mJIjMV71CbD-Ey0zk",
@@ -119,74 +125,69 @@ const firebaseConfig = {
 };
 
 const app = initializeApp(firebaseConfig);
-const auth = getAuth(app);
 const db = getFirestore(app);
 const storage = getStorage(app);
+const auth = getAuth(app);
 
-let listaProdutos = [];
+let lista = [];
 
-// Login Admin
+async function login() {
+  const emailInput = document.getElementById('email').value;
+  const senhaInput = document.getElementById('senha').value;
+  try {
+    await signInWithEmailAndPassword(auth, emailInput, senhaInput);
+    document.getElementById('adminPanel').style.display='block';
+    document.getElementById('loginBox').style.display='none';
+  } catch(e) {
+    alert('Erro no login: '+e.message);
+  }
+}
+
 function mostrarLogin(){ document.getElementById('loginBox').style.display='block'; }
 
-window.loginAdmin = function() {
-  const email = document.getElementById('email').value;
-  const senha = document.getElementById('senha').value;
+async function addProduto(){
+  const fileInput = document.getElementById('file').files[0];
+  const nomeInput = document.getElementById('nome').value;
+  const categoriaInput = document.getElementById('categoria').value;
 
-  signInWithEmailAndPassword(auth, email, senha)
-  .then(() => {
-    document.getElementById('loginBox').style.display='none';
-    document.getElementById('adminPanel').style.display='block';
-  })
-  .catch(err => alert('Erro no login: '+err.message));
+  if(!fileInput) return alert('Selecione uma imagem');
+  if(!nomeInput) return alert('Digite o nome do produto');
+
+  const storageRef = ref(storage, 'produtos/'+Date.now()+'-'+fileInput.name);
+  const snapshot = await uploadBytes(storageRef, fileInput);
+  const url = await getDownloadURL(snapshot.ref);
+
+  await addDoc(collection(db,'produtos'), { nome:nomeInput, categoria:categoriaInput, imagem:url });
+  alert('Produto cadastrado!');
 }
 
-// Upload de Produto
-window.addProduto = async function() {
-  const nome = document.getElementById('nome').value;
-  const categoria = document.getElementById('categoria').value;
-  const file = document.getElementById('file').files[0];
-  if(!nome || !file) return alert('Preencha todos os campos');
-
-  const storageRef = ref(storage, 'produtos/' + Date.now() + '-' + file.name);
-  await uploadBytes(storageRef, file);
-  const url = await getDownloadURL(storageRef);
-
-  await addDoc(collection(db,'produtos'), { nome, categoria, imagem: url });
-  alert('Produto cadastrado com sucesso!');
-}
-
-// Listar produtos
-const produtosCol = collection(db, 'produtos');
-onSnapshot(produtosCol, snapshot => {
-  listaProdutos = [];
-  snapshot.forEach(doc => listaProdutos.push(doc.data()));
-  render(listaProdutos);
+onSnapshot(collection(db,'produtos'), snapshot=>{
+  lista = [];
+  snapshot.forEach(doc=>{ lista.push(doc.data()); });
+  render(lista);
 });
 
-// Renderizar produtos
-function render(lista){
+function render(data){
   const container = document.getElementById('products');
   container.innerHTML = '';
-  lista.forEach(p => {
+  data.forEach(p=>{
     container.innerHTML += `
       <div class="card">
         <img src="${p.imagem}" alt="${p.nome}">
         <h4>${p.nome}</h4>
-        <button onclick="comprar('${p.nome}')">WhatsApp</button>
+        <button onclick="comprar('${p.nome}')">WhatsApp Norte</button>
       </div>
     `;
   });
 }
 
-// Comprar via WhatsApp
-window.comprar = function(nome){
+function comprar(nome){
   window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
 }
 
-// Filtros
-window.filtrar = function(cat){
-  if(cat==='all') render(listaProdutos);
-  else render(listaProdutos.filter(p=>p.categoria===cat));
+function filtrar(cat){
+  if(cat==='all') return render(lista);
+  render(lista.filter(p=>p.categoria===cat));
 }
 </script>
 
