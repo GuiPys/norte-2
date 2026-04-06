@@ -47,6 +47,10 @@
     .product-card a { display:inline-block; padding:8px 15px; background-color:#000; color:#fff; border-radius:5px; font-weight:bold; }
     .product-card a:hover { opacity:0.8; }
 
+    <section id="products-section" class="products">
+  <div id="products"></div>
+</section>
+
     /* AVALIAÇÕES - CARROSSEL */
     .reviews { padding:60px 10%; background-color:#f9f9f9; }
     .reviews h2 { font-size:2rem; text-align:center; margin-bottom:40px; }
@@ -71,6 +75,32 @@
     .contact form button { padding:12px; background-color:#FF0000; color:#fff; border:none; border-radius:5px; font-weight:bold; cursor:pointer; transition:opacity 0.3s; }
     .contact form button:hover { opacity:0.8; }
 
+    import { getFirestore, collection, getDocs } from "https://www.gstatic.com/firebasejs/9.22.0/firebase-firestore.js";
+
+const db = getFirestore(app); // app é sua inicialização do Firebase
+const productsCol = collection(db, "products");
+const productsDiv = document.getElementById("products");
+
+async function loadProducts(){
+  const snapshot = await getDocs(productsCol); // Pega todos os produtos
+  productsDiv.innerHTML = ""; // Limpa antes de renderizar
+  snapshot.forEach(docSnap => {
+    const p = docSnap.data();
+    productsDiv.innerHTML += `
+      <div class="product-card">
+        <img src="${p.image}" alt="${p.name}">
+        <h3>${p.name}</h3>
+        <p>${p.price}</p>
+        <a href="https://wa.me/5594991403367?text=${encodeURIComponent("Olá! Quero comprar " + p.name + " por " + p.price)}" target="_blank">Comprar</a>
+      </div>
+    `;
+  });
+
+
+      window.onload = function() {
+    loadProducts();
+   };
+    
     /* RODAPÉ */
     footer { padding:20px 10%; background-color:#000; color:#fff; text-align:center; }
     footer a { color:#FF0000; }
