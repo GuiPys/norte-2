@@ -3,54 +3,31 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Fort - Sistema Completo</title>
+<title>Portal Fort</title>
 
 <style>
-:root{
---preto:#0a0a0a;
---vermelho:#c62828;
---cinza:#f5f5f5;
-}
-
-body{margin:0;font-family:'Segoe UI',sans-serif;background:var(--cinza);} 
-
-header{background:var(--preto);color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;}
-.logo{color:var(--vermelho);font-size:22px;font-weight:bold;}
-
-.hero{background:linear-gradient(135deg,var(--preto),var(--vermelho));color:white;padding:60px;text-align:center;}
-.hero h1{margin:0;font-size:34px;}
-
+:root{--preto:#0a0a0a;--vermelho:#c62828;--cinza:#f5f5f5;}
+body{margin:0;font-family:Arial;background:var(--cinza);} 
+header{background:var(--preto);color:white;padding:15px;display:flex;justify-content:space-between;}
+.logo{color:var(--vermelho);font-weight:bold;font-size:22px;}
+.hero{background:linear-gradient(135deg,var(--preto),var(--vermelho));color:white;text-align:center;padding:50px;}
 .container{max-width:1200px;margin:auto;padding:20px;}
-.sobre{background:white;padding:20px;border-radius:10px;margin-bottom:20px;box-shadow:0 3px 10px rgba(0,0,0,0.1);} 
-
+.sobre{background:white;padding:20px;border-radius:10px;margin-bottom:20px;}
 .filtros{text-align:center;margin-bottom:20px;}
-.filtros button{margin:5px;padding:8px 12px;border:none;background:var(--preto);color:white;border-radius:5px;cursor:pointer;}
-.filtros button:hover{background:var(--vermelho);} 
-
+.filtros button{margin:5px;padding:8px;border:none;background:var(--preto);color:white;border-radius:5px;cursor:pointer;}
 .products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
-.card{background:white;border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,0.1);transition:0.3s;}
-.card:hover{transform:translateY(-5px);} 
+.card{background:white;border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,0.1);} 
 .card img{width:100%;height:180px;object-fit:cover;}
 .card h4{padding:10px;}
 .card button{margin:10px;width:calc(100% - 20px);background:var(--vermelho);color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;}
-
-.adminBtn{position:fixed;bottom:20px;right:20px;background:var(--vermelho);color:white;padding:12px 16px;border-radius:50px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.3);} 
-
-#loginBox,#adminPanel{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:25px;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.3);width:320px;z-index:999;}
-
-input,select{width:100%;margin:6px 0;padding:10px;border:1px solid #ccc;border-radius:6px;}
-button{width:100%;padding:10px;border:none;border-radius:6px;background:var(--vermelho);color:white;font-weight:bold;cursor:pointer;}
-
-.preview{width:100%;margin-top:10px;border-radius:8px;}
-
+.adminBtn{position:fixed;bottom:20px;right:20px;background:var(--vermelho);color:white;padding:10px;border-radius:50px;cursor:pointer;}
+#loginBox,#adminPanel{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:20px;border-radius:10px;width:300px;}
+input,select{width:100%;margin:5px 0;padding:8px;}
 </style>
 </head>
 
 <body>
-
-<header>
-<div class="logo">Portal Fort</div>
-</header>
+<header><div class="logo">Portal Fort</div></header>
 
 <section class="hero">
 <h1>Loja mais completa do Brasil</h1>
@@ -77,7 +54,7 @@ button{width:100%;padding:10px;border:none;border-radius:6px;background:var(--ve
 <div class="adminBtn" onclick="mostrarLogin()">Admin</div>
 
 <div id="loginBox">
-<h3>Login Admin</h3>
+<h3>Login</h3>
 <input id="email" placeholder="Email">
 <input id="senha" type="password" placeholder="Senha">
 <button onclick="login()">Entrar</button>
@@ -85,9 +62,8 @@ button{width:100%;padding:10px;border:none;border-radius:6px;background:var(--ve
 
 <div id="adminPanel">
 <h3>Cadastrar Produto</h3>
-<input id="nome" placeholder="Nome do produto">
-<input type="file" id="file" onchange="previewImagem()">
-<img id="preview" class="preview" style="display:none;">
+<input id="nome" placeholder="Nome">
+<input type="file" id="file">
 <select id="categoria">
 <option value="ferramentas">Ferramentas</option>
 <option value="construcao">Construção</option>
@@ -119,23 +95,8 @@ function mostrarLogin(){document.getElementById('loginBox').style.display='block
 
 function login(){
 firebase.auth().signInWithEmailAndPassword(email.value,senha.value)
-.then(()=>{
-loginBox.style.display='none';
-adminPanel.style.display='block';
-});
-}
-
-function previewImagem(){
-let file=document.getElementById('file').files[0];
-if(file){
-let reader=new FileReader();
-reader.onload=e=>{
-let img=document.getElementById('preview');
-img.src=e.target.result;
-img.style.display='block';
-};
-reader.readAsDataURL(file);
-}
+.then(()=>{loginBox.style.display='none';adminPanel.style.display='block';})
+.catch(e=>alert(e.message));
 }
 
 function uploadImagem(file){
@@ -147,42 +108,30 @@ function addProduto(){
 let file=document.getElementById('file').files[0];
 if(!file)return alert('Selecione imagem');
 
-uploadImagem(file).then(url=>{
-db.collection('produtos').add({
-nome:nome.value,
-imagem:url,
-categoria:categoria.value
-});
-});
+uploadImagem(file)
+.then(url=>db.collection('produtos').add({nome:nome.value,imagem:url,categoria:categoria.value}))
+.then(()=>alert('Produto cadastrado'))
+.catch(e=>alert(e.message));
 }
 
 let lista=[];
-db.collection('produtos').onSnapshot(snapshot=>{
+db.collection('produtos').onSnapshot(s=>{
 lista=[];
-snapshot.forEach(doc=>lista.push(doc.data()));
+s.forEach(doc=>lista.push(doc.data()));
 render(lista);
 });
 
 function render(data){
 let html='';
 data.forEach(p=>{
-html+=`<div class="card">
-<img src="${p.imagem}">
-<h4>${p.nome}</h4>
-<button onclick="comprar('${p.nome}')">WhatsApp</button>
-</div>`;
+html+=`<div class="card"><img src="${p.imagem}"><h4>${p.nome}</h4><button onclick="comprar('${p.nome}')">WhatsApp</button></div>`;
 });
 document.getElementById('products').innerHTML=html;
 }
 
-function filtrar(cat){
-if(cat==='all')return render(lista);
-render(lista.filter(p=>p.categoria===cat));
-}
+function filtrar(cat){if(cat==='all')return render(lista);render(lista.filter(p=>p.categoria===cat));}
 
-function comprar(nome){
-window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
-}
+function comprar(nome){window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);}
 </script>
 
 </body>
