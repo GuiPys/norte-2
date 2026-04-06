@@ -13,137 +13,37 @@
     --cinza:#f4f6f8;
 }
 
-body {
-    margin:0;
-    font-family:'Segoe UI', sans-serif;
-    background:var(--cinza);
-}
+body { margin:0; font-family:'Segoe UI', sans-serif; background:var(--cinza);} 
 
-header {
-    background: linear-gradient(135deg,var(--azul),#1e3a5f);
-    color:white;
-    padding:20px;
-    display:flex;
-    align-items:center;
-    justify-content:space-between;
-}
+header { background: linear-gradient(135deg,var(--azul),#1e3a5f); color:white; padding:20px; display:flex; align-items:center; justify-content:space-between; }
+.logo { display:flex; align-items:center; gap:15px; }
+.logo img { height:60px; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
+nav a:hover { color:var(--vermelho); }
 
-.logo {
-    display:flex;
-    align-items:center;
-    gap:15px;
-}
+.hero { background: linear-gradient(135deg,var(--azul) 60%, var(--vermelho)); color:white; padding:60px 20px; text-align:center; }
+.hero h1 { font-size:36px; margin-bottom:10px; }
 
-.logo img {
-    height:60px;
-}
+.container { max-width:1200px; margin:auto; padding:20px; }
 
-nav a {
-    color:white;
-    margin:0 10px;
-    text-decoration:none;
-    font-weight:bold;
-}
+.sobre { background:white; padding:20px; border-radius:10px; margin-bottom:20px; }
 
-nav a:hover {
-    color:var(--vermelho);
-}
+.filtros { margin-bottom:20px; text-align:center; }
+.filtros button { margin:5px; padding:8px 12px; border:none; background:var(--azul); color:white; border-radius:5px; cursor:pointer; }
 
-.hero {
-    background: linear-gradient(135deg,var(--azul) 60%, var(--vermelho));
-    color:white;
-    padding:60px 20px;
-    text-align:center;
-}
+.products { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
+.card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition:0.3s; }
+.card:hover { transform:translateY(-5px); }
+.card img { width:100%; height:180px; object-fit:cover; }
+.card h4 { padding:10px; }
+.card button { margin:10px; width:calc(100% - 20px); background:var(--vermelho); color:white; border:none; padding:10px; border-radius:6px; cursor:pointer; }
 
-.hero h1 {
-    font-size:36px;
-    margin-bottom:10px;
-}
+.admin { position:fixed; bottom:20px; right:20px; background:var(--azul); color:white; padding:10px 15px; border-radius:50px; cursor:pointer; }
 
-.container {
-    max-width:1200px;
-    margin:auto;
-    padding:20px;
-}
+#loginBox, #adminPanel { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2); width:300px; }
 
-.products {
-    display:grid;
-    grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-    gap:20px;
-}
-
-.card {
-    background:white;
-    border-radius:12px;
-    overflow:hidden;
-    box-shadow:0 4px 10px rgba(0,0,0,0.1);
-    transition:0.3s;
-}
-
-.card:hover {
-    transform:translateY(-5px);
-}
-
-.card img {
-    width:100%;
-    height:180px;
-    object-fit:cover;
-}
-
-.card h4 {
-    padding:10px;
-}
-
-.card button {
-    margin:10px;
-    width:calc(100% - 20px);
-    background:var(--vermelho);
-    color:white;
-    border:none;
-    padding:10px;
-    border-radius:6px;
-    cursor:pointer;
-}
-
-.card button:hover {
-    background:#a81d1d;
-}
-
-.admin {
-    position:fixed;
-    bottom:20px;
-    right:20px;
-    background:var(--azul);
-    color:white;
-    padding:10px 15px;
-    border-radius:50px;
-    cursor:pointer;
-}
-
-#loginBox, #adminPanel {
-    display:none;
-    position:fixed;
-    top:50%;
-    left:50%;
-    transform:translate(-50%,-50%);
-    background:white;
-    padding:20px;
-    border-radius:10px;
-    box-shadow:0 5px 15px rgba(0,0,0,0.2);
-    width:300px;
-}
-
-input, select {
-    width:100%;
-    padding:8px;
-    margin:5px 0;
-}
-
-button {
-    width:100%;
-}
-
+input, select { width:100%; padding:8px; margin:5px 0; }
+button { width:100%; }
 </style>
 </head>
 
@@ -167,7 +67,23 @@ button {
 </section>
 
 <div class="container">
+
+<div class="sobre">
+<h2>Sobre a Empresa</h2>
+<p>A <strong>Norte Distribuidora</strong> oferece ferramentas e máquinas com excelente custo-benefício, atendendo profissionais e empresas com qualidade, variedade e confiança.</p>
+</div>
+
+<div class="filtros">
+<button onclick="filtrar('all')">Todos</button>
+<button onclick="filtrar('ferramentas')">Ferramentas</button>
+<button onclick="filtrar('adesivos')">Adesivos</button>
+<button onclick="filtrar('mangueiras')">Mangueiras</button>
+<button onclick="filtrar('epis')">EPI's</button>
+<button onclick="filtrar('eletricos')">Elétricos</button>
+</div>
+
 <div class="products" id="products"></div>
+
 </div>
 
 <div class="admin" onclick="mostrarLogin()">Admin</div>
@@ -186,6 +102,9 @@ button {
 <select id="categoria">
 <option value="ferramentas">Ferramentas</option>
 <option value="adesivos">Adesivos</option>
+<option value="mangueiras">Mangueiras</option>
+<option value="epis">EPI's</option>
+<option value="eletricos">Elétricos</option>
 </select>
 <button onclick="addProduto()">Cadastrar</button>
 </div>
@@ -211,15 +130,10 @@ const storage = firebase.storage();
 
 function login(){
 firebase.auth().signInWithEmailAndPassword(email.value, senha.value)
-.then(()=>{
-adminPanel.style.display='block';
-loginBox.style.display='none';
-});
+.then(()=>{ adminPanel.style.display='block'; loginBox.style.display='none'; });
 }
 
-function mostrarLogin(){
-loginBox.style.display='block';
-}
+function mostrarLogin(){ loginBox.style.display='block'; }
 
 function uploadImagem(file){
 let ref = storage.ref('produtos/' + Date.now() + file.name);
@@ -227,24 +141,18 @@ return ref.put(file).then(()=> ref.getDownloadURL());
 }
 
 function addProduto(){
-let file = fileInput = document.getElementById('file').files[0];
+let file = document.getElementById('file').files[0];
 if(!file) return alert('Selecione imagem');
 
 uploadImagem(file).then(url=>{
- db.collection('produtos').add({
- nome: nome.value,
- imagem: url,
- categoria: categoria.value
- });
+ db.collection('produtos').add({ nome: nome.value, imagem: url, categoria: categoria.value });
 });
 }
 
 let lista = [];
 db.collection('produtos').onSnapshot(snapshot=>{
 lista=[];
-snapshot.forEach(doc=>{
-lista.push(doc.data());
-});
+snapshot.forEach(doc=>{ lista.push(doc.data()); });
 render(lista);
 });
 
@@ -255,14 +163,19 @@ html+=`
 <div class="card">
 <img src="${p.imagem}">
 <h4>${p.nome}</h4>
-<button onclick="comprar('${p.nome}')">WhatsApp</button>
+<button onclick="comprar('${p.nome}')">WhatsApp Norte</button>
 </div>`;
 });
-products.innerHTML = html;
+document.getElementById('products').innerHTML = html;
 }
 
 function comprar(nome){
 window.open(`https://wa.me/5594981590065?text=Olá, tenho interesse no produto ${nome}`);
+}
+
+function filtrar(cat){
+if(cat==='all') return render(lista);
+render(lista.filter(p=>p.categoria===cat));
 }
 </script>
 
