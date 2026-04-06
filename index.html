@@ -1,290 +1,460 @@
 <!DOCTYPE html>
-<html lang="pt-br">
+<html lang="pt-BR">
 <head>
-<meta charset="UTF-8">
-<meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Fort</title>
+  <meta charset="UTF-8">
+  <meta name="viewport" content="width=device-width, initial-scale=1.0">
+  <title>Portal Fort - Loja de Ferramentas</title>
+  <style>
+    /* RESET BÁSICO */
+    * {
+      margin: 0;
+      padding: 0;
+      box-sizing: border-box;
+      font-family: 'Montserrat', sans-serif;
+    }
 
-<style>
-:root {
-    --branco:#ffffff;
-    --preto:#000000;
-    --vermelho:#c62828;
-    --cinza:#f4f4f4;
-}
+    body {
+      background-color: #fff;
+      color: #333;
+      line-height: 1.6;
+    }
 
-body { margin:0; font-family:'Segoe UI', sans-serif; background:var(--cinza);} 
+    a {
+      text-decoration: none;
+      color: inherit;
+    }
 
-header { background:var(--preto); color:white; padding:20px; display:flex; align-items:center; justify-content:space-between; }
-.logo { display:flex; align-items:center; gap:15px; }
-.logo img { height:60px; }
-nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
-nav a:hover { color:var(--vermelho); }
+    /* CABEÇALHO */
+    header {
+      display: flex;
+      justify-content: space-between;
+      align-items: center;
+      padding: 20px 10%;
+      background-color: #000;
+      color: #fff;
+      position: sticky;
+      top: 0;
+      z-index: 100;
+    }
 
-.hero { background: linear-gradient(135deg,var(--preto) 60%, var(--vermelho)); color:white; padding:60px 20px; text-align:center; }
-.hero h1 { font-size:36px; margin-bottom:10px; }
+    header .logo {
+      font-size: 1.8rem;
+      font-weight: bold;
+      color: #FFA500;
+    }
 
-.container { max-width:1200px; margin:auto; padding:20px; }
+    nav ul {
+      list-style: none;
+      display: flex;
+      gap: 20px;
+    }
 
-.sobre { background:var(--branco); padding:20px; border-radius:10px; margin-bottom:20px; }
+    nav ul li a {
+      color: #fff;
+      font-weight: 500;
+      transition: color 0.3s;
+    }
 
-.filtros { margin-bottom:20px; text-align:center; }
-.filtros button { margin:5px; padding:8px 12px; border:none; background:var(--preto); color:white; border-radius:5px; cursor:pointer; }
-.filtros button:hover { background:var(--vermelho); }
+    nav ul li a:hover {
+      color: #FFA500;
+    }
 
-.products { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
-.card { background:var(--branco); border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition:0.3s; }
-.card:hover { transform:translateY(-5px); }
-.card img { width:100%; height:180px; object-fit:cover; }
-.card h4 { padding:10px; color:var(--preto); }
-.card button { margin:10px; width:calc(100% - 20px); background:var(--vermelho); color:white; border:none; padding:10px; border-radius:6px; cursor:pointer; }
+    header .call-btn {
+      background-color: #FFA500;
+      color: #000;
+      padding: 10px 15px;
+      border-radius: 5px;
+      font-weight: bold;
+    }
 
-.admin { position:fixed; bottom:20px; right:20px; background:var(--preto); color:white; padding:10px 15px; border-radius:50px; cursor:pointer; }
+    /* HERO */
+    .hero {
+      background: url('https://images.unsplash.com/photo-1591012911204-423a01d9d1d8?auto=format&fit=crop&w=1470&q=80') center/cover no-repeat;
+      height: 70vh;
+      display: flex;
+      justify-content: center;
+      align-items: center;
+      text-align: center;
+      color: #fff;
+      position: relative;
+    }
 
-#loginBox, #adminPanel { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--branco); padding:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2); width:300px; }
+    .hero::after {
+      content: '';
+      position: absolute;
+      inset: 0;
+      background: rgba(0,0,0,0.5);
+    }
 
-input, select { width:100%; padding:8px; margin:5px 0; }
-button { width:100%; }
-</style>
+    .hero-content {
+      position: relative;
+      z-index: 1;
+      max-width: 700px;
+    }
+
+    .hero-content h1 {
+      font-size: 2.5rem;
+      margin-bottom: 20px;
+    }
+
+    .hero-content a {
+      display: inline-block;
+      background-color: #FFA500;
+      color: #000;
+      padding: 12px 25px;
+      border-radius: 5px;
+      font-weight: bold;
+      transition: opacity 0.3s;
+    }
+
+    .hero-content a:hover {
+      opacity: 0.8;
+    }
+
+    /* SOBRE */
+    .about {
+      padding: 60px 10%;
+      display: flex;
+      flex-wrap: wrap;
+      gap: 40px;
+      align-items: center;
+      background-color: #f9f9f9;
+    }
+
+    .about img {
+      flex: 1;
+      max-width: 500px;
+      border-radius: 10px;
+    }
+
+    .about-text {
+      flex: 1;
+    }
+
+    .about-text h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      color: #000;
+    }
+
+    .about-text p {
+      margin-bottom: 20px;
+    }
+
+    .info-list {
+      list-style: none;
+    }
+
+    .info-list li {
+      margin-bottom: 10px;
+      font-weight: 500;
+    }
+
+    /* PRODUTOS */
+    .products {
+      padding: 60px 10%;
+    }
+
+    .products h2 {
+      font-size: 2rem;
+      margin-bottom: 40px;
+      text-align: center;
+    }
+
+    .product-grid {
+      display: grid;
+      grid-template-columns: repeat(auto-fit, minmax(220px, 1fr));
+      gap: 20px;
+    }
+
+    .product-card {
+      border: 1px solid #ddd;
+      border-radius: 10px;
+      overflow: hidden;
+      transition: transform 0.3s, box-shadow 0.3s;
+      background-color: #fff;
+    }
+
+    .product-card:hover {
+      transform: translateY(-5px);
+      box-shadow: 0 10px 20px rgba(0,0,0,0.1);
+    }
+
+    .product-card img {
+      width: 100%;
+      height: 200px;
+      object-fit: cover;
+    }
+
+    .product-card .product-info {
+      padding: 15px;
+    }
+
+    .product-card h3 {
+      margin-bottom: 10px;
+      font-size: 1.2rem;
+    }
+
+    .product-card p {
+      margin-bottom: 10px;
+      font-weight: bold;
+      color: #FFA500;
+    }
+
+    .product-card a {
+      display: inline-block;
+      padding: 8px 15px;
+      background-color: #000;
+      color: #fff;
+      border-radius: 5px;
+      font-weight: bold;
+    }
+
+    .product-card a:hover {
+      opacity: 0.8;
+    }
+
+    /* AVALIAÇÕES */
+    .reviews {
+      padding: 60px 10%;
+      background-color: #f9f9f9;
+    }
+
+    .reviews h2 {
+      font-size: 2rem;
+      text-align: center;
+      margin-bottom: 40px;
+    }
+
+    .review-card {
+      border-bottom: 1px solid #ddd;
+      padding: 20px 0;
+    }
+
+    .review-card:last-child {
+      border-bottom: none;
+    }
+
+    .review-card p {
+      margin-bottom: 10px;
+    }
+
+    .stars {
+      color: #FFA500;
+      margin-bottom: 10px;
+    }
+
+    /* LOCALIZAÇÃO */
+    .location {
+      padding: 60px 10%;
+      text-align: center;
+    }
+
+    .location h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+    }
+
+    .map-container iframe {
+      width: 100%;
+      height: 400px;
+      border: none;
+      border-radius: 10px;
+    }
+
+    /* CONTATO */
+    .contact {
+      padding: 60px 10%;
+      background-color: #f9f9f9;
+    }
+
+    .contact h2 {
+      font-size: 2rem;
+      margin-bottom: 20px;
+      text-align: center;
+    }
+
+    .contact form {
+      max-width: 600px;
+      margin: 0 auto;
+      display: flex;
+      flex-direction: column;
+      gap: 15px;
+    }
+
+    .contact form input,
+    .contact form textarea {
+      padding: 10px;
+      border: 1px solid #ddd;
+      border-radius: 5px;
+      font-size: 1rem;
+    }
+
+    .contact form button {
+      padding: 12px;
+      background-color: #FFA500;
+      color: #000;
+      border: none;
+      border-radius: 5px;
+      font-weight: bold;
+      cursor: pointer;
+      transition: opacity 0.3s;
+    }
+
+    .contact form button:hover {
+      opacity: 0.8;
+    }
+
+    /* RODAPÉ */
+    footer {
+      padding: 20px 10%;
+      background-color: #000;
+      color: #fff;
+      text-align: center;
+    }
+
+    footer a {
+      color: #FFA500;
+    }
+
+    /* RESPONSIVO */
+    @media (max-width: 768px) {
+      .about {
+        flex-direction: column;
+      }
+
+      header {
+        flex-direction: column;
+        gap: 15px;
+      }
+
+      nav ul {
+        flex-direction: column;
+        gap: 10px;
+      }
+    }
+  </style>
 </head>
-
 <body>
 
-<header>
-<div class="logo">
-<img src="logo.png" alt="Portal Fort">
-<h2>Portal Fort</h2>
-</div>
-<nav>
-<a href="#">Início</a>
-<a href="#">Produtos</a>
-<a href="#">Contato</a>
-</nav>
-</header>
+  <!-- CABEÇALHO -->
+  <header>
+    <div class="logo">Portal Fort</div>
+    <nav>
+      <ul>
+        <li><a href="#hero">Início</a></li>
+        <li><a href="#products">Produtos</a></li>
+        <li><a href="#reviews">Avaliações</a></li>
+        <li><a href="#about">Sobre Nós</a></li>
+        <li><a href="#contact">Contato</a></li>
+      </ul>
+    </nav>
+    <a href="tel:+5594991403367" class="call-btn">Ligue Agora</a>
+  </header>
 
-<section class="hero">
-<h1>Loja de Ferramentas e Produtos de Construção</h1>
-<p>A maior variedade para sua empresa ou lar!</p>
-</section>
+  <!-- HERO -->
+  <section class="hero" id="hero">
+    <div class="hero-content">
+      <h1>A loja mais completa do Brasil em ferramentas e materiais!</h1>
+      <a href="#products">Veja nossos produtos</a>
+    </div>
+  </section>
 
-<div class="container">
+  <!-- SOBRE -->
+  <section class="about" id="about">
+    <img src="https://images.unsplash.com/photo-1591012911204-423a01d9d1d8?auto=format&fit=crop&w=800&q=80" alt="Loja Portal Fort">
+    <div class="about-text">
+      <h2>Sobre a Portal Fort</h2>
+      <p>Localizada em Parauapebas – PA, a Portal Fort oferece produtos diversificados, desde ferramentas para construção até artefatos de madeira e peças para móveis. Nosso objetivo é facilitar a sua vida com qualidade e variedade.</p>
+      <ul class="info-list">
+        <li>📍 Endereço: R. E, 741 - Cidade Nova, Parauapebas - PA, 68515-000</li>
+        <li>⏰ Horário: Aberto · Fecha 18:00</li>
+        <li>☎️ Telefone: (94) 99140-3367</li>
+        <li>🛒 Áreas atendidas: Parauapebas</li>
+      </ul>
+    </div>
+  </section>
 
-<div class="sobre">
-<h2>Sobre a Empresa</h2>
-<p><strong>Portal Fort</strong> oferece ferramentas, portas, madeira e materiais de construção com qualidade e confiança para Parauapebas – PA.</p>
-</div>
-
-<div class="filtros">
-<button onclick="filtrar('all')">Todos</button>
-<button onclick="filtrar('madeira')">Madeira</button>
-<button onclick="filtrar('porta')">Porta</button>
-<button onclick="filtrar('ferramentas')">Ferramentas</button>
-<button onclick="filtrar('construcao')">Construção</button>
-</div>
-
-<div class="products" id="products"></div>
-
-</div>
-
-<div class="admin" onclick="mostrarLogin()">Admin</div>
-
-<div id="loginBox">
-<h3>Login Admin</h3>
-<input id="email" placeholder="Email">
-<input id="senha" type="password" placeholder="Senha">
-<button onclick="login()">Entrar</button>
-</div>
-
-<div id="adminPanel">
-<h3>Cadastrar Produto</h3>
-<input id="nome" placeholder="Nome do produto">
-<input type="file" id="file">
-<select id="categoria">
-<option value="madeira">Madeira</option>
-<option value="porta">Porta</option>
-<option value="ferramentas">Ferramentas</option>
-<option value="construcao">Construção</option>
-</select>
-<button onclick="addProduto()">Cadastrar</button>
-</div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-const firebaseConfig = {
-  apiKey: "AIzaSyAu5gIF2BBR6boxJ6mJIjMV71CbD-Ey0zk",
-  authDomain: "norte-distribuidora.firebaseapp.com",
-  projectId: "norte-distribuidora",
-  storageBucket: "norte-distribuidora.appspot.com",
-  messagingSenderId: "225983951384",
-  appId: "1:225983951384:web:a7c2c5a724cd945fe8096d",
-  measurementId: "G-P2564XP9R6"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const storage = getStorage(app);
-const auth = getAuth(app);
-
-let lista = [];
-
-async function login() {
-  const emailInput = document.getElementById('email').value;
-  const senhaInput = document.getElementById('senha').value;
-  try {
-    await signInWithEmailAndPassword(auth, emailInput, senhaInput);
-    document.getElementById('adminPanel').style.display='block';
-    document.getElementById('loginBox').style.display='none';
-  } catch(e) {
-    alert('Erro no login: '+e.message);
-  }
-}
-
-function mostrarLogin(){ document.getElementById('loginBox').style.display='block'; }
-
-async function addProduto(){
-  const fileInput = document.getElementById('file').files[0];
-  const nomeInput = document.getElementById('nome').value;
-  const categoriaInput = document.getElementById('categoria').value;
-
-  if(!fileInput) return alert('Selecione uma imagem');
-  if(!nomeInput) return alert('Digite o nome do produto');
-
-  const storageRef = ref(storage, 'produtos/'+Date.now()+'-'+fileInput.name);
-  const snapshot = await uploadBytes(storageRef, fileInput);
-  const url = await getDownloadURL(snapshot.ref);
-
-  await addDoc(collection(db,'produtos'), { nome:nomeInput, categoria:categoriaInput, imagem:url });
-  alert('Produto cadastrado!');
-}
-
-onSnapshot(collection(db,'produtos'), snapshot=>{
-  lista = [];
-  snapshot.forEach(doc=>{ lista.push(doc.data()); });
-  render(lista);
-});
-
-function render(data){
-  const container = document.getElementById('products');
-  container.innerHTML = '';
-  data.forEach(p=>{
-    container.innerHTML += `
-      <div class="card">
-        <img src="${p.imagem}" alt="${p.nome}">
-        <h4>${p.nome}</h4>
-        <button onclick="comprar('${p.nome}')">WhatsApp Norte</button>
+  <!-- PRODUTOS -->
+  <section class="products" id="products">
+    <h2>Nossos Produtos</h2>
+    <div class="product-grid">
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1581091870623-3c98dbbfe224?auto=format&fit=crop&w=400&q=80" alt="Produto 1">
+        <div class="product-info">
+          <h3>Martelo Profissional</h3>
+          <p>R$ 49,90</p>
+          <a href="#">Comprar</a>
+        </div>
       </div>
-    `;
-  });
-}
-
-function comprar(nome){
-  window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
-}
-
-function filtrar(cat){
-  if(cat==='all') return render(lista);
-  render(lista.filter(p=>p.categoria===cat));
-}
-</script>
-    
-<div class="admin" id="adminBtn">Admin</div>
-
-<script type="module">
-import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
-import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
-import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
-import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
-
-// Config Firebase
-const firebaseConfig = {
-  apiKey: "AIzaSyAu5gIF2BBR6boxJ6mJIjMV71CbD-Ey0zk",
-  authDomain: "norte-distribuidora.firebaseapp.com",
-  projectId: "norte-distribuidora",
-  storageBucket: "norte-distribuidora.appspot.com",
-  messagingSenderId: "225983951384",
-  appId: "1:225983951384:web:a7c2c5a724cd945fe8096d",
-  measurementId: "G-P2564XP9R6"
-};
-
-const app = initializeApp(firebaseConfig);
-const db = getFirestore(app);
-const storage = getStorage(app);
-const auth = getAuth(app);
-
-let lista = [];
-
-// Tornando funções globais para o botão funcionar
-window.mostrarLogin = function() {
-  document.getElementById('loginBox').style.display = 'block';
-}
-
-window.login = async function() {
-  const email = document.getElementById('email').value;
-  const senha = document.getElementById('senha').value;
-  try {
-    await signInWithEmailAndPassword(auth, email, senha);
-    document.getElementById('adminPanel').style.display = 'block';
-    document.getElementById('loginBox').style.display = 'none';
-  } catch(e) {
-    alert('Erro no login: '+e.message);
-  }
-}
-
-window.addProduto = async function() {
-  const fileInput = document.getElementById('file').files[0];
-  const nomeInput = document.getElementById('nome').value;
-  const categoriaInput = document.getElementById('categoria').value;
-
-  if(!fileInput) return alert('Selecione uma imagem');
-  if(!nomeInput) return alert('Digite o nome do produto');
-
-  const storageRef = ref(storage, 'produtos/'+Date.now()+'-'+fileInput.name);
-  const snapshot = await uploadBytes(storageRef, fileInput);
-  const url = await getDownloadURL(snapshot.ref);
-
-  await addDoc(collection(db,'produtos'), { nome:nomeInput, categoria:categoriaInput, imagem:url });
-  alert('Produto cadastrado!');
-}
-
-// Observador Firestore
-onSnapshot(collection(db,'produtos'), snapshot=>{
-  lista = [];
-  snapshot.forEach(doc => lista.push(doc.data()));
-  render(lista);
-});
-
-function render(data){
-  const container = document.getElementById('products');
-  container.innerHTML = '';
-  data.forEach(p=>{
-    container.innerHTML += `
-      <div class="card">
-        <img src="${p.imagem}" alt="${p.nome}">
-        <h4>${p.nome}</h4>
-        <button onclick="comprar('${p.nome}')">WhatsApp Norte</button>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1600185368862-7cb7d0c4560c?auto=format&fit=crop&w=400&q=80" alt="Produto 2">
+        <div class="product-info">
+          <h3>Furadeira Elétrica</h3>
+          <p>R$ 249,90</p>
+          <a href="#">Comprar</a>
+        </div>
       </div>
-    `;
-  });
-}
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1581093448797-3dc0e0515c4b?auto=format&fit=crop&w=400&q=80" alt="Produto 3">
+        <div class="product-info">
+          <h3>Parafusadeira</h3>
+          <p>R$ 199,90</p>
+          <a href="#">Comprar</a>
+        </div>
+      </div>
+      <div class="product-card">
+        <img src="https://images.unsplash.com/photo-1600185368845-53a39f7f58b6?auto=format&fit=crop&w=400&q=80" alt="Produto 4">
+        <div class="product-info">
+          <h3>Serra Circular</h3>
+          <p>R$ 349,90</p>
+          <a href="#">Comprar</a>
+        </div>
+      </div>
+    </div>
+  </section>
 
-window.comprar = function(nome){
-  window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
-}
+  <!-- AVALIAÇÕES -->
+  <section class="reviews" id="reviews">
+    <h2>Avaliações dos Clientes</h2>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>“Produtos diversificados e diferenciados. Canaã dos Carajás merece uma loja dessa.” – Moisés Barbosa</p>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★★</div>
+      <p>“São especialistas em artefatos de madeira e peças para móveis.” – Wladimir Minutentag</p>
+    </div>
+    <div class="review-card">
+      <div class="stars">★★★★☆</div>
+      <p>“Precisa de material para construir a sua casa?” – Tatiele Campos</p>
+    </div>
+  </section>
 
-window.filtrar = function(cat){
-  if(cat==='all') return render(lista);
-  render(lista.filter(p=>p.categoria===cat));
-}
+  <!-- LOCALIZAÇÃO -->
+  <section class="location" id="location">
+    <h2>Onde nos Encontrar</h2>
+    <div class="map-container">
+      <iframe src="https://www.google.com/maps?q=R.+E,+741+-+Cidade+Nova,+Parauapebas+-+PA&output=embed"></iframe>
+    </div>
+  </section>
 
-// Fazendo o botão Admin chamar a função corretamente
-document.getElementById('adminBtn').addEventListener('click', mostrarLogin);
+  <!-- CONTATO -->
+  <section class="contact" id="contact">
+    <h2>Fale Conosco</h2>
+    <form>
+      <input type="text" placeholder="Nome" required>
+      <input type="email" placeholder="E-mail" required>
+      <input type="tel" placeholder="Telefone">
+      <textarea rows="5" placeholder="Mensagem" required></textarea>
+      <button type="submit">Enviar Mensagem</button>
+    </form>
+  </section>
 
-</script>
-    
+  <!-- RODAPÉ -->
+  <footer>
+    <p>© 2026 Portal Fort. Todos os direitos reservados. | <a href="#">Facebook</a> | <a href="#">Instagram</a></p>
+  </footer>
+
 </body>
 </html>
-
