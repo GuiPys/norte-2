@@ -3,55 +3,93 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Fort PRO</title>
+<title>Portal Fort</title>
 
 <style>
-:root{--preto:#0a0a0a;--vermelho:#c62828;--cinza:#f5f5f5;}
-body{margin:0;font-family:'Segoe UI',sans-serif;background:var(--cinza);} 
-header{background:var(--preto);color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;}
-.logo{color:var(--vermelho);font-size:22px;font-weight:bold;}
-.hero{background:linear-gradient(135deg,var(--preto),var(--vermelho));color:white;padding:60px;text-align:center;}
-.container{max-width:1200px;margin:auto;padding:20px;}
-.sobre{background:white;padding:20px;border-radius:10px;margin-bottom:20px;}
-.filtros{text-align:center;margin-bottom:20px;}
-.filtros button{margin:5px;padding:8px;border:none;background:var(--preto);color:white;border-radius:5px;cursor:pointer;}
-.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
-.card{background:white;border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,0.1);} 
-.card img{width:100%;height:180px;object-fit:cover;}
-.card h4{padding:10px;}
-.card button{margin:10px;width:calc(100% - 20px);background:var(--vermelho);color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;}
-.adminBtn{position:fixed;bottom:20px;right:20px;background:var(--vermelho);color:white;padding:10px;border-radius:50px;cursor:pointer;}
-#loginBox,#adminPanel{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:20px;border-radius:10px;width:320px;}
-input,select{width:100%;margin:5px 0;padding:8px;}
+:root {
+    --azul:#1a3f5c;
+    --vermelho:#c62828;
+    --branco:#ffffff;
+    --cinza:#f4f6f8;
+}
+
+body { margin:0; font-family:'Segoe UI', sans-serif; background:var(--cinza);} 
+
+header { background: linear-gradient(135deg,var(--azul),#0f2a3f); color:white; padding:20px; display:flex; align-items:center; justify-content:space-between; }
+.logo { display:flex; align-items:center; gap:15px; }
+.logo img { height:60px; }
+nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
+nav a:hover { color:var(--vermelho); }
+
+.hero { background: linear-gradient(135deg,var(--azul) 60%, var(--vermelho)); color:white; padding:60px 20px; text-align:center; }
+.hero h1 { font-size:36px; margin-bottom:10px; }
+
+.container { max-width:1200px; margin:auto; padding:20px; }
+
+.sobre { background:white; padding:20px; border-radius:10px; margin-bottom:20px; }
+
+.filtros { margin-bottom:20px; text-align:center; }
+.filtros button { margin:5px; padding:8px 12px; border:none; background:var(--azul); color:white; border-radius:5px; cursor:pointer; }
+
+.products { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
+.card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition:0.3s; }
+.card:hover { transform:translateY(-5px); }
+.card img { width:100%; height:180px; object-fit:cover; }
+.card h4 { padding:10px; }
+.card button { margin:10px; width:calc(100% - 20px); background:var(--vermelho); color:white; border:none; padding:10px; border-radius:6px; cursor:pointer; }
+
+.admin { position:fixed; bottom:20px; right:20px; background:var(--azul); color:white; padding:10px 15px; border-radius:50px; cursor:pointer; }
+
+#loginBox, #adminPanel { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2); width:300px; }
+
+input, select { width:100%; padding:8px; margin:5px 0; }
+button { width:100%; }
 </style>
 </head>
 
 <body>
-<header><div class="logo">Portal Fort</div></header>
+
+<header>
+<div class="logo">
+<img src="img/logo.png" alt="Logo Portal Fort">
+<h2>Portal Fort</h2>
+</div>
+<nav>
+<a href="#">Início</a>
+<a href="#">Produtos</a>
+<a href="#">Contato</a>
+</nav>
+</header>
 
 <section class="hero">
-<h1>Loja mais completa do Brasil</h1>
-<p>Ferramentas e soluções profissionais</p>
+<h1>Ferramentas e Equipamentos Profissionais</h1>
+<p>Loja mais completa de Parauapebas! Qualidade, variedade e o melhor preço.</p>
 </section>
 
 <div class="container">
+
 <div class="sobre">
-<h2>Sobre</h2>
-<p>Portal Fort é referência em ferramentas e construção em Parauapebas.</p>
-<p><strong>WhatsApp:</strong> (94) 99140-3367</p>
+<h2>Sobre a Portal Fort</h2>
+<p>A <strong>Portal Fort</strong> é especializada em ferramentas, equipamentos e materiais para empresas e residências. Atendemos Parauapebas com produtos de alta qualidade e variedade incomparável.</p>
+<p><strong>Endereço:</strong> R. E, 741 - Cidade Nova, Parauapebas - PA, 68515-000</p>
+<p><strong>Telefone:</strong> (94) 99140-3367</p>
+<p><strong>Horário:</strong> Aberto · Fecha às 18:00</p>
 </div>
 
 <div class="filtros">
 <button onclick="filtrar('all')">Todos</button>
 <button onclick="filtrar('ferramentas')">Ferramentas</button>
-<button onclick="filtrar('construcao')">Construção</button>
+<button onclick="filtrar('eletricos')">Elétricos</button>
 <button onclick="filtrar('epis')">EPI's</button>
+<button onclick="filtrar('mangueiras')">Mangueiras</button>
+<button onclick="filtrar('adesivos')">Adesivos</button>
 </div>
 
-<div id="products" class="products"></div>
+<div class="products" id="products"></div>
+
 </div>
 
-<div class="adminBtn" onclick="mostrarLogin()">Admin</div>
+<div class="admin" onclick="mostrarLogin()">Admin</div>
 
 <div id="loginBox">
 <h3>Login</h3>
@@ -62,12 +100,14 @@ input,select{width:100%;margin:5px 0;padding:8px;}
 
 <div id="adminPanel">
 <h3>Cadastrar Produto</h3>
-<input id="nome" placeholder="Nome">
-<input type="file" id="file">
+<input id="nome" placeholder="Nome do Produto">
+<input type="file" id="file" accept="image/*">
 <select id="categoria">
 <option value="ferramentas">Ferramentas</option>
-<option value="construcao">Construção</option>
+<option value="eletricos">Elétricos</option>
 <option value="epis">EPI's</option>
+<option value="mangueiras">Mangueiras</option>
+<option value="adesivos">Adesivos</option>
 </select>
 <button onclick="addProduto()">Cadastrar</button>
 </div>
@@ -78,74 +118,100 @@ input,select{width:100%;margin:5px 0;padding:8px;}
 <script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 
 <script>
-const firebaseConfig={
-apiKey:"AIzaSyAu5gIF2BBR6boxJ6mJIjMV71CbD-Ey0zk",
-authDomain:"norte-distribuidora.firebaseapp.com",
-projectId:"norte-distribuidora",
-storageBucket:"norte-distribuidora.appspot.com",
-messagingSenderId:"225983951384",
-appId:"1:225983951384:web:a7c2c5a724cd945fe8096d"
+const firebaseConfig = {
+  apiKey: "SUA_API_KEY",
+  authDomain: "seu-projeto.firebaseapp.com",
+  projectId: "seu-projeto",
+  storageBucket: "seu-projeto.appspot.com",
+  messagingSenderId: "SEU_MESSAGING_ID",
+  appId: "SEU_APP_ID"
 };
 
 firebase.initializeApp(firebaseConfig);
-const db=firebase.firestore();
-const storage=firebase.storage();
 
-function mostrarLogin(){loginBox.style.display='block';}
+const db = firebase.firestore();
+const storage = firebase.storage();
+
+let lista = [];
 
 function login(){
-firebase.auth().signInWithEmailAndPassword(email.value,senha.value)
-.then(()=>{
-loginBox.style.display='none';
-adminPanel.style.display='block';
-})
-.catch(e=>alert(e.message));
+  const emailVal = document.getElementById('email').value;
+  const senhaVal = document.getElementById('senha').value;
+  if(!emailVal || !senhaVal) return alert('Preencha email e senha');
+
+  firebase.auth().signInWithEmailAndPassword(emailVal, senhaVal)
+  .then(()=>{
+    document.getElementById('adminPanel').style.display='block';
+    document.getElementById('loginBox').style.display='none';
+  })
+  .catch(err => alert('Erro no login: ' + err.message));
+}
+
+function mostrarLogin(){ 
+  document.getElementById('loginBox').style.display='block'; 
+}
+
+async function uploadImagem(file){
+  if(!file) return;
+  try {
+    const ref = storage.ref('produtos/' + Date.now() + '-' + file.name);
+    await ref.put(file);
+    return await ref.getDownloadURL();
+  } catch(e){
+    alert("Erro ao enviar imagem: " + e.message);
+  }
 }
 
 async function addProduto(){
-try{
-let file=document.getElementById('file').files[0];
-if(!file) return alert('Selecione imagem');
+  const nomeVal = document.getElementById('nome').value;
+  const categoriaVal = document.getElementById('categoria').value;
+  const file = document.getElementById('file').files[0];
 
-let ref=storage.ref('produtos/'+Date.now()+file.name);
-await ref.put(file);
-let url=await ref.getDownloadURL();
+  if(!nomeVal) return alert('Digite o nome do produto');
+  if(!categoriaVal) return alert('Selecione a categoria');
+  if(!file) return alert('Selecione uma imagem');
 
-await db.collection('produtos').add({
-nome:nome.value,
-imagem:url,
-categoria:categoria.value
-});
+  const url = await uploadImagem(file);
+  if(!url) return;
 
-alert('Produto cadastrado com sucesso');
-}catch(e){
-console.error(e);
-alert('Erro: '+e.message);
+  db.collection('produtos').add({ 
+    nome: nomeVal, 
+    categoria: categoriaVal, 
+    imagem: url 
+  }).then(()=>{
+    document.getElementById('nome').value='';
+    document.getElementById('file').value='';
+    alert('Produto cadastrado com sucesso!');
+  }).catch(err=> alert('Erro ao cadastrar: '+err.message));
 }
-}
 
-let lista=[];
+// Captura produtos em tempo real
 db.collection('produtos').onSnapshot(snapshot=>{
-lista=[];
-snapshot.forEach(doc=>lista.push(doc.data()));
-render(lista);
+  lista=[];
+  snapshot.forEach(doc=>{ lista.push(doc.data()); });
+  render(lista);
 });
 
 function render(data){
-let html='';
-data.forEach(p=>{
-html+=`<div class="card"><img src="${p.imagem}"><h4>${p.nome}</h4><button onclick="comprar('${p.nome}')">WhatsApp</button></div>`;
-});
-products.innerHTML=html;
-}
-
-function filtrar(cat){
-if(cat==='all') return render(lista);
-render(lista.filter(p=>p.categoria===cat));
+  let html='';
+  data.forEach(p=>{
+    html+=`
+      <div class="card">
+        <img src="${p.imagem}" alt="${p.nome}">
+        <h4>${p.nome}</h4>
+        <button onclick="comprar('${p.nome}')">WhatsApp Portal Fort</button>
+      </div>`;
+  });
+  document.getElementById('products').innerHTML = html;
 }
 
 function comprar(nome){
-window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
+  window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
+}
+
+function filtrar(cat){
+  if(cat==='all') return render(lista);
+  render(lista.filter(p=>p.categoria===cat));
 }
 </script>
 
