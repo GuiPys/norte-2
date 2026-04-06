@@ -3,105 +3,46 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Portal Fort</title>
+<title>Portal Fort - Sistema Completo</title>
 
 <style>
 :root{
 --preto:#0a0a0a;
 --vermelho:#c62828;
---branco:#ffffff;
 --cinza:#f5f5f5;
 }
 
-body{margin:0;font-family:Segoe UI;background:var(--cinza);} 
+body{margin:0;font-family:'Segoe UI',sans-serif;background:var(--cinza);} 
 
-header{
-background:var(--preto);
-color:white;
-padding:15px;
-display:flex;
-justify-content:space-between;
-align-items:center;
-}
+header{background:var(--preto);color:white;padding:15px;display:flex;justify-content:space-between;align-items:center;}
+.logo{color:var(--vermelho);font-size:22px;font-weight:bold;}
 
-.logo{font-size:22px;font-weight:bold;color:var(--vermelho);} 
-
-.hero{
-background:linear-gradient(135deg,var(--preto),var(--vermelho));
-color:white;
-padding:60px 20px;
-text-align:center;
-}
-
-.hero h1{font-size:36px;margin-bottom:10px;}
+.hero{background:linear-gradient(135deg,var(--preto),var(--vermelho));color:white;padding:60px;text-align:center;}
+.hero h1{margin:0;font-size:34px;}
 
 .container{max-width:1200px;margin:auto;padding:20px;}
-
-.sobre{
-background:white;
-padding:20px;
-border-radius:10px;
-margin-bottom:20px;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
-}
+.sobre{background:white;padding:20px;border-radius:10px;margin-bottom:20px;box-shadow:0 3px 10px rgba(0,0,0,0.1);} 
 
 .filtros{text-align:center;margin-bottom:20px;}
-.filtros button{
-margin:5px;
-padding:8px 12px;
-border:none;
-background:var(--preto);
-color:white;
-border-radius:5px;
-cursor:pointer;
-}
-
+.filtros button{margin:5px;padding:8px 12px;border:none;background:var(--preto);color:white;border-radius:5px;cursor:pointer;}
 .filtros button:hover{background:var(--vermelho);} 
 
-.products{
-display:grid;
-grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
-gap:20px;
-}
-
-.card{
-background:white;
-border-radius:10px;
-overflow:hidden;
-box-shadow:0 3px 10px rgba(0,0,0,0.1);
-transition:0.3s;
-}
-
+.products{display:grid;grid-template-columns:repeat(auto-fill,minmax(220px,1fr));gap:20px;}
+.card{background:white;border-radius:10px;overflow:hidden;box-shadow:0 3px 10px rgba(0,0,0,0.1);transition:0.3s;}
 .card:hover{transform:translateY(-5px);} 
-
 .card img{width:100%;height:180px;object-fit:cover;}
 .card h4{padding:10px;}
+.card button{margin:10px;width:calc(100% - 20px);background:var(--vermelho);color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;}
 
-.card button{
-margin:10px;
-width:calc(100% - 20px);
-background:var(--vermelho);
-color:white;
-padding:10px;
-border:none;
-border-radius:5px;
-cursor:pointer;
-}
+.adminBtn{position:fixed;bottom:20px;right:20px;background:var(--vermelho);color:white;padding:12px 16px;border-radius:50px;cursor:pointer;box-shadow:0 3px 10px rgba(0,0,0,0.3);} 
 
-.contato{
-background:var(--preto);
-color:white;
-padding:20px;
-border-radius:10px;
-margin-top:20px;
-}
+#loginBox,#adminPanel{display:none;position:fixed;top:50%;left:50%;transform:translate(-50%,-50%);background:white;padding:25px;border-radius:12px;box-shadow:0 5px 20px rgba(0,0,0,0.3);width:320px;z-index:999;}
 
-footer{
-text-align:center;
-padding:15px;
-background:#000;
-color:white;
-}
+input,select{width:100%;margin:6px 0;padding:10px;border:1px solid #ccc;border-radius:6px;}
+button{width:100%;padding:10px;border:none;border-radius:6px;background:var(--vermelho);color:white;font-weight:bold;cursor:pointer;}
+
+.preview{width:100%;margin-top:10px;border-radius:8px;}
+
 </style>
 </head>
 
@@ -113,73 +54,136 @@ color:white;
 
 <section class="hero">
 <h1>Loja mais completa do Brasil</h1>
-<p>Ferramentas, materiais e soluções para sua empresa ou seu lar</p>
+<p>Ferramentas e soluções para sua empresa</p>
 </section>
 
 <div class="container">
-
 <div class="sobre">
-<h2>Sobre a Portal Fort</h2>
-<p><strong>Portal Fort</strong> é uma loja referência em Parauapebas, oferecendo uma grande variedade de ferramentas, materiais de construção e produtos especializados.</p>
-<p>Com atendimento de qualidade e soluções para empresas e residências, a loja se destaca pela diversidade e confiabilidade.</p>
-<p><strong>Endereço:</strong> R. E, 741 - Cidade Nova, Parauapebas - PA</p>
-<p><strong>Telefone:</strong> (94) 99140-3367</p>
-<p><strong>Horário:</strong> Aberto · Fecha às 18:00</p>
+<h2>Sobre</h2>
+<p>Portal Fort é referência em ferramentas e construção em Parauapebas.</p>
+<p><strong>WhatsApp:</strong> (94) 99140-3367</p>
 </div>
 
 <div class="filtros">
 <button onclick="filtrar('all')">Todos</button>
 <button onclick="filtrar('ferramentas')">Ferramentas</button>
-<button onclick="filtrar('madeira')">Madeira</button>
 <button onclick="filtrar('construcao')">Construção</button>
 <button onclick="filtrar('epis')">EPI's</button>
 </div>
 
-<div class="products" id="products"></div>
-
-<div class="contato">
-<h3>Fale conosco</h3>
-<p>Clique abaixo para falar direto no WhatsApp:</p>
-<button onclick="contato()" style="background:var(--vermelho);color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;">
-WhatsApp Portal Fort
-</button>
+<div id="products" class="products"></div>
 </div>
 
+<div class="adminBtn" onclick="mostrarLogin()">Admin</div>
+
+<div id="loginBox">
+<h3>Login Admin</h3>
+<input id="email" placeholder="Email">
+<input id="senha" type="password" placeholder="Senha">
+<button onclick="login()">Entrar</button>
 </div>
 
-<footer>
-© 2026 Portal Fort - Todos os direitos reservados
-</footer>
+<div id="adminPanel">
+<h3>Cadastrar Produto</h3>
+<input id="nome" placeholder="Nome do produto">
+<input type="file" id="file" onchange="previewImagem()">
+<img id="preview" class="preview" style="display:none;">
+<select id="categoria">
+<option value="ferramentas">Ferramentas</option>
+<option value="construcao">Construção</option>
+<option value="epis">EPI's</option>
+</select>
+<button onclick="addProduto()">Cadastrar</button>
+</div>
+
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
+<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
 
 <script>
-let produtos = [
-{nome:"Furadeira Profissional", categoria:"ferramentas", imagem:"https://via.placeholder.com/300"},
-{nome:"Parafusos", categoria:"construcao", imagem:"https://via.placeholder.com/300"},
-{nome:"Madeira MDF", categoria:"madeira", imagem:"https://via.placeholder.com/300"},
-{nome:"Capacete EPI", categoria:"epis", imagem:"https://via.placeholder.com/300"}
-];
+const firebaseConfig={
+apiKey:"AIzaSyAu5gIF2BBR6boxJ6mJIjMV71CbD-Ey0zk",
+authDomain:"norte-distribuidora.firebaseapp.com",
+projectId:"norte-distribuidora",
+storageBucket:"norte-distribuidora.firebasestorage.app",
+messagingSenderId:"225983951384",
+appId:"1:225983951384:web:291a7b6096f11194e8096d"
+};
 
-function render(lista){
+firebase.initializeApp(firebaseConfig);
+const db=firebase.firestore();
+const storage=firebase.storage();
+
+function mostrarLogin(){document.getElementById('loginBox').style.display='block';}
+
+function login(){
+firebase.auth().signInWithEmailAndPassword(email.value,senha.value)
+.then(()=>{
+loginBox.style.display='none';
+adminPanel.style.display='block';
+});
+}
+
+function previewImagem(){
+let file=document.getElementById('file').files[0];
+if(file){
+let reader=new FileReader();
+reader.onload=e=>{
+let img=document.getElementById('preview');
+img.src=e.target.result;
+img.style.display='block';
+};
+reader.readAsDataURL(file);
+}
+}
+
+function uploadImagem(file){
+let ref=storage.ref('produtos/'+Date.now()+file.name);
+return ref.put(file).then(()=>ref.getDownloadURL());
+}
+
+function addProduto(){
+let file=document.getElementById('file').files[0];
+if(!file)return alert('Selecione imagem');
+
+uploadImagem(file).then(url=>{
+db.collection('produtos').add({
+nome:nome.value,
+imagem:url,
+categoria:categoria.value
+});
+});
+}
+
+let lista=[];
+db.collection('produtos').onSnapshot(snapshot=>{
+lista=[];
+snapshot.forEach(doc=>lista.push(doc.data()));
+render(lista);
+});
+
+function render(data){
 let html='';
-lista.forEach(p=>{
-html+=`
-<div class="card">
+data.forEach(p=>{
+html+=`<div class="card">
 <img src="${p.imagem}">
 <h4>${p.nome}</h4>
 <button onclick="comprar('${p.nome}')">WhatsApp</button>
 </div>`;
 });
-document.getElementById('products').innerHTML = html;
+document.getElementById('products').innerHTML=html;
 }
 
 function filtrar(cat){
-if(cat==='all') return render(produtos);
-render(produtos.filter(p=>p.categoria===cat));
+if(cat==='all')return render(lista);
+render(lista.filter(p=>p.categoria===cat));
 }
 
 function comprar(nome){
 window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
 }
+</script>
 
-function contato(){
-window.open("https://wa.me/
+</body>
+</html>
