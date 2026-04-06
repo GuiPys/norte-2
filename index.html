@@ -3,181 +3,183 @@
 <head>
 <meta charset="UTF-8">
 <meta name="viewport" content="width=device-width, initial-scale=1.0">
-<title>Norte Distribuidora</title>
+<title>Portal Fort</title>
 
 <style>
-:root {
-    --azul:#2f5d86;
-    --vermelho:#c62828;
-    --branco:#ffffff;
-    --cinza:#f4f6f8;
+:root{
+--preto:#0a0a0a;
+--vermelho:#c62828;
+--branco:#ffffff;
+--cinza:#f5f5f5;
 }
 
-body { margin:0; font-family:'Segoe UI', sans-serif; background:var(--cinza);} 
+body{margin:0;font-family:Segoe UI;background:var(--cinza);} 
 
-header { background: linear-gradient(135deg,var(--azul),#1e3a5f); color:white; padding:20px; display:flex; align-items:center; justify-content:space-between; }
-.logo { display:flex; align-items:center; gap:15px; }
-.logo img { height:60px; }
-nav a { color:white; margin:0 10px; text-decoration:none; font-weight:bold; }
-nav a:hover { color:var(--vermelho); }
+header{
+background:var(--preto);
+color:white;
+padding:15px;
+display:flex;
+justify-content:space-between;
+align-items:center;
+}
 
-.hero { background: linear-gradient(135deg,var(--azul) 60%, var(--vermelho)); color:white; padding:60px 20px; text-align:center; }
-.hero h1 { font-size:36px; margin-bottom:10px; }
+.logo{font-size:22px;font-weight:bold;color:var(--vermelho);} 
 
-.container { max-width:1200px; margin:auto; padding:20px; }
+.hero{
+background:linear-gradient(135deg,var(--preto),var(--vermelho));
+color:white;
+padding:60px 20px;
+text-align:center;
+}
 
-.sobre { background:white; padding:20px; border-radius:10px; margin-bottom:20px; }
+.hero h1{font-size:36px;margin-bottom:10px;}
 
-.filtros { margin-bottom:20px; text-align:center; }
-.filtros button { margin:5px; padding:8px 12px; border:none; background:var(--azul); color:white; border-radius:5px; cursor:pointer; }
+.container{max-width:1200px;margin:auto;padding:20px;}
 
-.products { display:grid; grid-template-columns:repeat(auto-fill,minmax(220px,1fr)); gap:20px; }
-.card { background:white; border-radius:12px; overflow:hidden; box-shadow:0 4px 10px rgba(0,0,0,0.1); transition:0.3s; }
-.card:hover { transform:translateY(-5px); }
-.card img { width:100%; height:180px; object-fit:cover; }
-.card h4 { padding:10px; }
-.card button { margin:10px; width:calc(100% - 20px); background:var(--vermelho); color:white; border:none; padding:10px; border-radius:6px; cursor:pointer; }
+.sobre{
+background:white;
+padding:20px;
+border-radius:10px;
+margin-bottom:20px;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+}
 
-.admin { position:fixed; bottom:20px; right:20px; background:var(--azul); color:white; padding:10px 15px; border-radius:50px; cursor:pointer; }
+.filtros{text-align:center;margin-bottom:20px;}
+.filtros button{
+margin:5px;
+padding:8px 12px;
+border:none;
+background:var(--preto);
+color:white;
+border-radius:5px;
+cursor:pointer;
+}
 
-#loginBox, #adminPanel { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:white; padding:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2); width:300px; }
+.filtros button:hover{background:var(--vermelho);} 
 
-input, select { width:100%; padding:8px; margin:5px 0; }
-button { width:100%; }
+.products{
+display:grid;
+grid-template-columns:repeat(auto-fill,minmax(220px,1fr));
+gap:20px;
+}
+
+.card{
+background:white;
+border-radius:10px;
+overflow:hidden;
+box-shadow:0 3px 10px rgba(0,0,0,0.1);
+transition:0.3s;
+}
+
+.card:hover{transform:translateY(-5px);} 
+
+.card img{width:100%;height:180px;object-fit:cover;}
+.card h4{padding:10px;}
+
+.card button{
+margin:10px;
+width:calc(100% - 20px);
+background:var(--vermelho);
+color:white;
+padding:10px;
+border:none;
+border-radius:5px;
+cursor:pointer;
+}
+
+.contato{
+background:var(--preto);
+color:white;
+padding:20px;
+border-radius:10px;
+margin-top:20px;
+}
+
+footer{
+text-align:center;
+padding:15px;
+background:#000;
+color:white;
+}
 </style>
 </head>
 
 <body>
 
 <header>
-<div class="logo">
-<img src="img/logo.png">
-<h2>Norte Distribuidora</h2>
-</div>
-<nav>
-<a href="#">Início</a>
-<a href="#">Produtos</a>
-<a href="#">Contato</a>
-</nav>
+<div class="logo">Portal Fort</div>
 </header>
 
 <section class="hero">
-<h1>Ferramentas e Máquinas Profissionais</h1>
-<p>Qualidade, confiança e o melhor preço da região</p>
+<h1>Loja mais completa do Brasil</h1>
+<p>Ferramentas, materiais e soluções para sua empresa ou seu lar</p>
 </section>
 
 <div class="container">
 
 <div class="sobre">
-<h2>Sobre a Empresa</h2>
-<p>A <strong>Norte Distribuidora</strong> oferece ferramentas e máquinas com excelente custo-benefício, atendendo profissionais e empresas com qualidade, variedade e confiança.</p>
+<h2>Sobre a Portal Fort</h2>
+<p><strong>Portal Fort</strong> é uma loja referência em Parauapebas, oferecendo uma grande variedade de ferramentas, materiais de construção e produtos especializados.</p>
+<p>Com atendimento de qualidade e soluções para empresas e residências, a loja se destaca pela diversidade e confiabilidade.</p>
+<p><strong>Endereço:</strong> R. E, 741 - Cidade Nova, Parauapebas - PA</p>
+<p><strong>Telefone:</strong> (94) 99140-3367</p>
+<p><strong>Horário:</strong> Aberto · Fecha às 18:00</p>
 </div>
 
 <div class="filtros">
 <button onclick="filtrar('all')">Todos</button>
 <button onclick="filtrar('ferramentas')">Ferramentas</button>
-<button onclick="filtrar('adesivos')">Adesivos</button>
-<button onclick="filtrar('mangueiras')">Mangueiras</button>
+<button onclick="filtrar('madeira')">Madeira</button>
+<button onclick="filtrar('construcao')">Construção</button>
 <button onclick="filtrar('epis')">EPI's</button>
-<button onclick="filtrar('eletricos')">Elétricos</button>
 </div>
 
 <div class="products" id="products"></div>
 
+<div class="contato">
+<h3>Fale conosco</h3>
+<p>Clique abaixo para falar direto no WhatsApp:</p>
+<button onclick="contato()" style="background:var(--vermelho);color:white;padding:10px;border:none;border-radius:5px;cursor:pointer;">
+WhatsApp Portal Fort
+</button>
 </div>
 
-<div class="admin" onclick="mostrarLogin()">Admin</div>
-
-<div id="loginBox">
-<h3>Login</h3>
-<input id="email" placeholder="Email">
-<input id="senha" type="password" placeholder="Senha">
-<button onclick="login()">Entrar</button>
 </div>
 
-<div id="adminPanel">
-<h3>Cadastrar Produto</h3>
-<input id="nome" placeholder="Nome">
-<input type="file" id="file">
-<select id="categoria">
-<option value="ferramentas">Ferramentas</option>
-<option value="adesivos">Adesivos</option>
-<option value="mangueiras">Mangueiras</option>
-<option value="epis">EPI's</option>
-<option value="eletricos">Elétricos</option>
-</select>
-<button onclick="addProduto()">Cadastrar</button>
-</div>
-
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-app-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-auth-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore-compat.js"></script>
-<script src="https://www.gstatic.com/firebasejs/10.7.1/firebase-storage-compat.js"></script>
+<footer>
+© 2026 Portal Fort - Todos os direitos reservados
+</footer>
 
 <script>
-const firebaseConfig = {
-  apiKey: "AIzaSyAu5gIF2BBR6boxJ6mJIjMV71CbD-Ey0zk",
-  authDomain: "norte-distribuidora.firebaseapp.com",
-  projectId: "norte-distribuidora",
-  storageBucket: "norte-distribuidora.firebasestorage.app",
-  messagingSenderId: "225983951384",
-  appId: "1:225983951384:web:291a7b6096f11194e8096d"
-};
+let produtos = [
+{nome:"Furadeira Profissional", categoria:"ferramentas", imagem:"https://via.placeholder.com/300"},
+{nome:"Parafusos", categoria:"construcao", imagem:"https://via.placeholder.com/300"},
+{nome:"Madeira MDF", categoria:"madeira", imagem:"https://via.placeholder.com/300"},
+{nome:"Capacete EPI", categoria:"epis", imagem:"https://via.placeholder.com/300"}
+];
 
-firebase.initializeApp(firebaseConfig);
-const db = firebase.firestore();
-const storage = firebase.storage();
-
-function login(){
-firebase.auth().signInWithEmailAndPassword(email.value, senha.value)
-.then(()=>{ adminPanel.style.display='block'; loginBox.style.display='none'; });
-}
-
-function mostrarLogin(){ loginBox.style.display='block'; }
-
-function uploadImagem(file){
-let ref = storage.ref('produtos/' + Date.now() + file.name);
-return ref.put(file).then(()=> ref.getDownloadURL());
-}
-
-function addProduto(){
-let file = document.getElementById('file').files[0];
-if(!file) return alert('Selecione imagem');
-
-uploadImagem(file).then(url=>{
- db.collection('produtos').add({ nome: nome.value, imagem: url, categoria: categoria.value });
-});
-}
-
-let lista = [];
-db.collection('produtos').onSnapshot(snapshot=>{
-lista=[];
-snapshot.forEach(doc=>{ lista.push(doc.data()); });
-render(lista);
-});
-
-function render(data){
+function render(lista){
 let html='';
-data.forEach(p=>{
+lista.forEach(p=>{
 html+=`
 <div class="card">
 <img src="${p.imagem}">
 <h4>${p.nome}</h4>
-<button onclick="comprar('${p.nome}')">WhatsApp Norte</button>
+<button onclick="comprar('${p.nome}')">WhatsApp</button>
 </div>`;
 });
 document.getElementById('products').innerHTML = html;
 }
 
-function comprar(nome){
-window.open(`https://wa.me/5594981590065?text=Olá, tenho interesse no produto ${nome}`);
-}
-
 function filtrar(cat){
-if(cat==='all') return render(lista);
-render(lista.filter(p=>p.categoria===cat));
+if(cat==='all') return render(produtos);
+render(produtos.filter(p=>p.categoria===cat));
 }
-</script>
 
-</body>
-</html>
+function comprar(nome){
+window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
+}
+
+function contato(){
+window.open("https://wa.me/
