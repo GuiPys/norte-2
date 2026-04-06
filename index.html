@@ -39,9 +39,9 @@ nav a:hover { color:var(--vermelho); }
 .card h4 { padding:10px; color:var(--preto); }
 .card button { margin:10px; width:calc(100% - 20px); background:var(--vermelho); color:var(--branco); border:none; padding:10px; border-radius:6px; cursor:pointer; }
 
-.admin { position:fixed; bottom:20px; right:20px; background:var(--preto); color:var(--branco); padding:10px 15px; border-radius:50px; cursor:pointer; }
+.admin { position:fixed; bottom:20px; right:20px; background:var(--preto); color:var(--branco); padding:10px 15px; border-radius:50px; cursor:pointer; z-index:999; }
 
-#loginBox, #adminPanel { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--branco); padding:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2); width:300px; }
+#loginBox, #adminPanel { display:none; position:fixed; top:50%; left:50%; transform:translate(-50%,-50%); background:var(--branco); padding:20px; border-radius:10px; box-shadow:0 5px 15px rgba(0,0,0,0.2); width:300px; z-index:1000; }
 
 input, select { width:100%; padding:8px; margin:5px 0; }
 button { width:100%; }
@@ -63,7 +63,7 @@ button { width:100%; }
 </header>
 
 <section class="hero">
-<h1>Ferramentas e Máquinas Profissionais</h1>
+<h1>Ferramentas e Produtos Profissionais</h1>
 <p>Qualidade, confiança e o melhor preço da região</p>
 </section>
 
@@ -76,18 +76,17 @@ button { width:100%; }
 
 <div class="filtros">
 <button onclick="filtrar('all')">Todos</button>
+<button onclick="filtrar('madeira')">Madeira</button>
+<button onclick="filtrar('porta')">Porta</button>
 <button onclick="filtrar('ferramentas')">Ferramentas</button>
-<button onclick="filtrar('adesivos')">Adesivos</button>
-<button onclick="filtrar('mangueiras')">Mangueiras</button>
-<button onclick="filtrar('epis')">EPI's</button>
-<button onclick="filtrar('eletricos')">Elétricos</button>
+<button onclick="filtrar('construcao')">Construção</button>
 </div>
 
 <div class="products" id="products"></div>
 
 </div>
 
-<div class="admin" onclick="mostrarLogin()">Admin</div>
+<div class="admin" id="adminBtn">Admin</div>
 
 <div id="loginBox">
 <h3>Login</h3>
@@ -101,11 +100,10 @@ button { width:100%; }
 <input id="nome" placeholder="Nome do Produto">
 <input type="file" id="file">
 <select id="categoria">
+<option value="madeira">Madeira</option>
+<option value="porta">Porta</option>
 <option value="ferramentas">Ferramentas</option>
-<option value="adesivos">Adesivos</option>
-<option value="mangueiras">Mangueiras</option>
-<option value="epis">EPI's</option>
-<option value="eletricos">Elétricos</option>
+<option value="construcao">Construção</option>
 </select>
 <button onclick="addProduto()">Cadastrar</button>
 </div>
@@ -117,7 +115,7 @@ import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstati
 import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
 import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
 
-// Config do Firebase
+// Config Firebase
 const firebaseConfig = {
   apiKey: "AIzaSyAu5gIF2BBR6boxJ6mJIjMV71CbD-Ey0zk",
   authDomain: "norte-distribuidora.firebaseapp.com",
@@ -134,34 +132,38 @@ const db = getFirestore(app);
 const auth = getAuth(app);
 const storage = getStorage(app);
 
+// Botão Admin
+document.getElementById('adminBtn').addEventListener('click', ()=>{
+    const panel = document.getElementById('loginBox');
+    panel.style.display = panel.style.display==='block' ? 'none' : 'block';
+});
+
 // Login Admin
-function login(){
+async function login(){
   const emailInput = document.getElementById('email').value;
   const senhaInput = document.getElementById('senha').value;
-  signInWithEmailAndPassword(auth, emailInput, senhaInput)
-  .then(()=>{ 
-    document.getElementById('adminPanel').style.display='block'; 
-    document.getElementById('loginBox').style.display='none'; 
-  })
-  .catch(err=> alert("Erro no login: " + err.message));
+
+  try{
+    await signInWithEmailAndPassword(auth, emailInput, senhaInput);
+    document.getElementById('adminPanel').style.display='block';
+    document.getElementById('loginBox').style.display='none';
+  } catch(err){
+    alert("Erro no login: " + err.message);
+  }
 }
 
-function mostrarLogin(){ 
-  document.getElementById('loginBox').style.display='block'; 
-}
-
-// Upload imagem
+// Upload Imagem
 async function uploadImagem(file){
   const fileRef = ref(storage, 'produtos/' + Date.now() + '-' + file.name);
   await uploadBytes(fileRef, file);
-  return getDownloadURL(fileRef);
+  return await getDownloadURL(fileRef);
 }
 
-// Adicionar produto
+// Adicionar Produto
 async function addProduto(){
   const file = document.getElementById('file').files[0];
   if(!file) return alert('Selecione uma imagem');
-
+  
   const url = await uploadImagem(file);
   const nome = document.getElementById('nome').value;
   const categoria = document.getElementById('categoria').value;
@@ -172,7 +174,7 @@ async function addProduto(){
   document.getElementById('file').value='';
 }
 
-// Render produtos
+// Render Produtos
 let lista = [];
 onSnapshot(collection(db, 'produtos'), snapshot=>{
   lista = [];
@@ -197,6 +199,7 @@ function comprar(nome){
   window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
 }
 
+// Filtrar Produtos
 function filtrar(cat){
   if(cat==='all') return render(lista);
   render(lista.filter(p=>p.categoria===cat));
