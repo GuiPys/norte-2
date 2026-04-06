@@ -190,6 +190,101 @@ function filtrar(cat){
   render(lista.filter(p=>p.categoria===cat));
 }
 </script>
+    
+<div class="admin" id="adminBtn">Admin</div>
 
+<script type="module">
+import { initializeApp } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-app.js";
+import { getFirestore, collection, addDoc, onSnapshot } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-firestore.js";
+import { getStorage, ref, uploadBytes, getDownloadURL } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-storage.js";
+import { getAuth, signInWithEmailAndPassword } from "https://www.gstatic.com/firebasejs/10.7.1/firebase-auth.js";
+
+// Config Firebase
+const firebaseConfig = {
+  apiKey: "AIzaSyAu5gIF2BBR6boxJ6mJIjMV71CbD-Ey0zk",
+  authDomain: "norte-distribuidora.firebaseapp.com",
+  projectId: "norte-distribuidora",
+  storageBucket: "norte-distribuidora.appspot.com",
+  messagingSenderId: "225983951384",
+  appId: "1:225983951384:web:a7c2c5a724cd945fe8096d",
+  measurementId: "G-P2564XP9R6"
+};
+
+const app = initializeApp(firebaseConfig);
+const db = getFirestore(app);
+const storage = getStorage(app);
+const auth = getAuth(app);
+
+let lista = [];
+
+// Tornando funções globais para o botão funcionar
+window.mostrarLogin = function() {
+  document.getElementById('loginBox').style.display = 'block';
+}
+
+window.login = async function() {
+  const email = document.getElementById('email').value;
+  const senha = document.getElementById('senha').value;
+  try {
+    await signInWithEmailAndPassword(auth, email, senha);
+    document.getElementById('adminPanel').style.display = 'block';
+    document.getElementById('loginBox').style.display = 'none';
+  } catch(e) {
+    alert('Erro no login: '+e.message);
+  }
+}
+
+window.addProduto = async function() {
+  const fileInput = document.getElementById('file').files[0];
+  const nomeInput = document.getElementById('nome').value;
+  const categoriaInput = document.getElementById('categoria').value;
+
+  if(!fileInput) return alert('Selecione uma imagem');
+  if(!nomeInput) return alert('Digite o nome do produto');
+
+  const storageRef = ref(storage, 'produtos/'+Date.now()+'-'+fileInput.name);
+  const snapshot = await uploadBytes(storageRef, fileInput);
+  const url = await getDownloadURL(snapshot.ref);
+
+  await addDoc(collection(db,'produtos'), { nome:nomeInput, categoria:categoriaInput, imagem:url });
+  alert('Produto cadastrado!');
+}
+
+// Observador Firestore
+onSnapshot(collection(db,'produtos'), snapshot=>{
+  lista = [];
+  snapshot.forEach(doc => lista.push(doc.data()));
+  render(lista);
+});
+
+function render(data){
+  const container = document.getElementById('products');
+  container.innerHTML = '';
+  data.forEach(p=>{
+    container.innerHTML += `
+      <div class="card">
+        <img src="${p.imagem}" alt="${p.nome}">
+        <h4>${p.nome}</h4>
+        <button onclick="comprar('${p.nome}')">WhatsApp Norte</button>
+      </div>
+    `;
+  });
+}
+
+window.comprar = function(nome){
+  window.open(`https://wa.me/5594991403367?text=Olá, tenho interesse no produto ${nome}`);
+}
+
+window.filtrar = function(cat){
+  if(cat==='all') return render(lista);
+  render(lista.filter(p=>p.categoria===cat));
+}
+
+// Fazendo o botão Admin chamar a função corretamente
+document.getElementById('adminBtn').addEventListener('click', mostrarLogin);
+
+</script>
+    
 </body>
 </html>
+
